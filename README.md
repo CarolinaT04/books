@@ -28,12 +28,21 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## About the project
+This is a project about Books and their information like gender, editorial and of course authors. It is a simple example how we can use NestJs.
+
 ## Installation
 
 ```bash
 $ npm install
 ```
+## Enviroments
+You have to add at the root of the project the .env file and add the following information
 
+```bash
+#Database information
+MONGODB_DATABSE= ''
+```
 ## Running the app
 
 ```bash
@@ -47,6 +56,80 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Features
+  CRUD of gender
+  CRUD of Author
+  CRUD of Editorial
+  CRUD of Books
+
+
+## Create Gender
+
+   Request
+  ```bash
+      {
+      "name": "Romantic"
+      
+      }
+   ```
+
+   Response
+   ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+      "name": "Romantic"
+      }
+  ```
+## Get a single Gender by ID
+   Request
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+      
+      }
+  ```
+
+    Response
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+      "name": "Romantic"
+      }
+ ```
+## Update Gender by ID
+   Request
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+     "name": "romantic"
+      
+      }
+  ```
+
+    Response
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+      "name": "romantic"
+      }
+ ```
+
+ ## Delete Gender
+   Request
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+      
+      }
+  ```
+
+    Response
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+      "name": "romantic"
+      }
+ ```
 ## Test
 
 ```bash
@@ -59,6 +142,8 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+
 
 ## Support
 
