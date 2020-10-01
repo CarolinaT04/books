@@ -57,15 +57,15 @@ $ npm run start:prod
 ```
 
 ## Features
-  CRUD of gender
-  CRUD of Author
-  CRUD of Editorial
-  CRUD of Books
+ * CRUD of gender
+ * CRUD of Author
+ * CRUD of Editorial
+ * CRUD of Books
 
 
 ## Create Gender
 
-   Request
+  **Request**
   ```bash
       {
       "name": "Romantic"
@@ -73,7 +73,7 @@ $ npm run start:prod
       }
    ```
 
-   Response
+  **Response**
    ```bash
       {
       "_id": "5f750eddeedb022a2fffc391",
@@ -81,7 +81,7 @@ $ npm run start:prod
       }
   ```
 ## Get a single Gender by ID
-   Request
+   **Request**
   ```bash
       {
      "id": "5f750eddeedb022a2fffc391"
@@ -89,7 +89,7 @@ $ npm run start:prod
       }
   ```
 
-    Response
+   **Reponse**
   ```bash
       {
       "_id": "5f750eddeedb022a2fffc391",
@@ -97,7 +97,7 @@ $ npm run start:prod
       }
  ```
 ## Update Gender by ID
-   Request
+  **Request**
   ```bash
       {
      "id": "5f750eddeedb022a2fffc391"
@@ -106,7 +106,7 @@ $ npm run start:prod
       }
   ```
 
-    Response
+   **Response**
   ```bash
       {
       "_id": "5f750eddeedb022a2fffc391",
@@ -115,7 +115,7 @@ $ npm run start:prod
  ```
 
  ## Delete Gender
-   Request
+   **Request**
   ```bash
       {
      "id": "5f750eddeedb022a2fffc391"
@@ -123,7 +123,7 @@ $ npm run start:prod
       }
   ```
 
-    Response
+   **Response**
   ```bash
       {
       "_id": "5f750eddeedb022a2fffc391",
