@@ -8,4 +8,4 @@ export class Gender extends Document {
 
 }
 
-export const GenderSchema = SchemaFactory.createForClass(Gender)
+export const GenderSchema = SchemaFactory.createForClass(Gender);

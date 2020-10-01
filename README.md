@@ -130,6 +130,251 @@ $ npm run start:prod
       "name": "romantic"
       }
  ```
+
+ ## Create Author
+
+  **Request**
+  ```bash
+      {
+      "name": "Susan Elizabeth",
+      "lastName": "Phillips"
+      
+      }
+   ```
+
+  **Response**
+   ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+      "name": "Susan Elizabeth",
+      "lastName": "Phillips"
+      }
+  ```
+## Get a single Author by ID
+   **Request**
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+      
+      }
+  ```
+
+   **Reponse**
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+     "name": "Susan Elizabeth",
+     "lastName": "Phillips"
+      }
+ ```
+## Update Author by ID
+  **Request**
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+     "name": "Susan"
+      
+      }
+  ```
+
+   **Response**
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+      "name": "Susan",
+      "lastName": "Phillips"
+      }
+ ```
+
+ ## Delete Author
+   **Request**
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+      
+      }
+  ```
+
+   **Response**
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+      "name": "Susan",
+      "lastName": "Phillips"
+      }
+ ```
+
+ ## Create Editorial
+
+  **Request**
+  ```bash
+      {
+      "name": "Bolsillo",
+      "address":"Lorem ipsum",
+      "email":"bolsillo@gmal.com"
+      
+      }
+   ```
+
+  **Response**
+   ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+       "name": "Bolsillo",
+      "address":"Lorem ipsum",
+      "email":"bolsillo@gmal.com"
+      }
+  ```
+## Get a single Editorial by ID
+   **Request**
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+      
+      }
+  ```
+
+   **Reponse**
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+      "name": "Bolsillo",
+      "address":"Lorem ipsum",
+      "email":"bolsillo@gmal.com"
+      }
+ ```
+## Update Editorial by ID
+  **Request**
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+     "name": "Bolsa"
+      
+      }
+  ```
+
+   **Response**
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+       "name": "Bolsa",
+      "address":"Lorem ipsum",
+      "email":"bolsillo@gmal.com",
+      }
+ ```
+
+ ## Delete Editorial
+   **Request**
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+      
+      }
+  ```
+
+   **Response**
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+      "name": "Bolsa",
+      "address":"Lorem ipsum",
+      "email":"bolsillo@gmal.com",
+      }
+ ```
+
+ ## Create Book
+
+  **Request**
+  ```bash
+      {
+      "name": "Kiss an Angel",
+      "publishDate": "1996-09-16T00:00:00.000+00:00",
+      "ISBN": "132d3",
+      "gender": "5f750eddeedb022a2fffc592",
+      "author": "5f750eddeedb022a2fffc493",
+      "editorial": "5f750eddeedb022a2fffc994"
+      
+      }
+   ```
+
+  **Response**
+   ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+      "name": "Kiss an Angel",
+      "publishDate": "1996-09-16T00:00:00.000+00:00",
+      "ISBN": "132d3",
+      "gender": "5f750eddeedb022a2fffc592",
+      "author": "5f750eddeedb022a2fffc493",
+      "editorial": "5f750eddeedb022a2fffc994"
+      }
+  ```
+## Get a single Book by ID
+   **Request**
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+      
+      }
+  ```
+
+   **Reponse**
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+     "name": "Kiss an Angel",
+      "publishDate": "1996-09-16T00:00:00.000+00:00",
+      "ISBN": "132d3",
+      "gender": "5f750eddeedb022a2fffc592",
+      "author": "5f750eddeedb022a2fffc493",
+      "editorial": "5f750eddeedb022a2fffc994"
+      }
+ ```
+## Update Book by ID
+  **Request**
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+     "ISBN": "12314"
+      
+      }
+  ```
+
+   **Response**
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+      "name": "Kiss an Angel",
+      "publishDate": "1996-09-16T00:00:00.000+00:00",
+      "ISBN": "12314",
+      "gender": "5f750eddeedb022a2fffc592",
+      "author": "5f750eddeedb022a2fffc493",
+      "editorial": "5f750eddeedb022a2fffc994"
+      }
+ ```
+
+ ## Delete Book
+   **Request**
+  ```bash
+      {
+     "id": "5f750eddeedb022a2fffc391"
+      
+      }
+  ```
+
+   **Response**
+  ```bash
+      {
+      "_id": "5f750eddeedb022a2fffc391",
+     "name": "Kiss an Angel",
+      "publishDate": "1996-09-16T00:00:00.000+00:00",
+      "ISBN": "12314",
+      "gender": "5f750eddeedb022a2fffc592",
+      "author": "5f750eddeedb022a2fffc493",
+      "editorial": "5f750eddeedb022a2fffc994"
+      }
+ ```
+ 
 ## Test
 
 ```bash

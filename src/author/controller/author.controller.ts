@@ -1,8 +1,8 @@
 import { Controller, Delete, Patch, Post, Get, Query, Param, Body } from '@nestjs/common';
-import { AuthorService } from './author.service';
+import { AuthorService } from '../services/author.service';
 import { PaginationQueryDto } from 'src/shared/common/dto/pagination-query.dto';
-import { CreateAuthorDto } from './dto/create-author.dto';
-import { UpdateAuthorDto } from './dto/update-author.dto';
+import { CreateAuthorDto } from '../dto/create-author.dto';
+import { UpdateAuthorDto } from '../dto/update-author.dto';
 
 @Controller('author')
 export class AuthorController {

@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Param, Patch, Delete, HttpCode, HttpStatus, Body, Query } from '@nestjs/common';
-import { BooksService } from './books.service';
-import { CreateBooksDto } from './dto/create-books.dto';
-import { UpdateBooksDto } from './dto/update-books.dtos';
-import { PaginationQueryDto } from '../shared/common/dto/pagination-query.dto';
+import { BooksService } from '../services/books.service';
+import { CreateBooksDto } from '../dto/create-books.dto';
+import { UpdateBooksDto } from '../dto/update-books.dtos';
+import { PaginationQueryDto } from '../../shared/common/dto/pagination-query.dto';
 
 @Controller('books')
 export class BooksController {

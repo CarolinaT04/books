@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { BooksService } from './books.service';
+import { BooksService } from './services/books.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Book, BookSchema } from './entities/book.entity';
-import { BooksController } from './books.controller';
+import { BooksController } from './controller/books.controller';
 
 @Module({
     imports: [MongooseModule.forFeature([{

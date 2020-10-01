@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { EditorialService } from './editorial.service';
+import { EditorialService } from './services/editorial.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Editorial, EditorialSchema } from './entities/editorial.entity';
-import { EditorialController } from './editorial.controller';
+import { EditorialController } from './controller/editorial.controller';
 
 @Module({
   imports: [ MongooseModule.forFeature([{

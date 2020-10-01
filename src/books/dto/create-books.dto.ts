@@ -10,12 +10,12 @@ export class CreateBooksDto {
     @IsString()
    readonly ISBN : string;
 
-   @IsString({ each: true})
-   readonly gender: string[];
+   @IsString()
+   readonly gender: string;
 
-   @IsString({ each: true})
-   readonly author: string[];
+   @IsString()
+   readonly author: string;
 
-   @IsString({ each: true})
-   readonly editorial: string[];
+   @IsString()
+   readonly editorial: string;
 }

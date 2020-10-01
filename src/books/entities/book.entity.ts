@@ -11,14 +11,14 @@ export class Book extends Document {
     @Prop()
     isbn: string;
 
-    @Prop([String])
-    gender: string[];
+    @Prop(String)
+    gender: string;
 
-    @Prop([String])
-    author: string[];
+    @Prop(String)
+    author: string;
 
-    @Prop([String])
-    editorial: string[];
+    @Prop(String)
+    editorial: string;
 
 }
 

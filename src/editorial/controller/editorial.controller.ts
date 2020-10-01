@@ -1,9 +1,9 @@
 import { Controller, Delete, Patch, Post, Get, Param, Body, Query } from '@nestjs/common';
-import { EditorialService } from './editorial.service';
+import { EditorialService } from '../services/editorial.service';
 import { PaginationQueryDto } from 'src/shared/common/dto/pagination-query.dto';
-import { CreateEditorialDto } from './dto/create-editorial.dto';
+import { CreateEditorialDto } from '../dto/create-editorial.dto';
 import { UpdateBooksDto } from 'src/books/dto/update-books.dtos';
-import { UpdateEditorialDto } from './dto/update-editorial.dto';
+import { UpdateEditorialDto } from '../dto/update-editorial.dto';
 
 @Controller('editorial')
 export class EditorialController {
