@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Patch, Delete, Query, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Delete, Query, Body, Param, HttpCode, HttpStatus } from '@nestjs/common';
 import { PaginationQueryDto } from 'src/shared/common/dto/pagination-query.dto';
 import { GenderService } from './../services/gender.service';
 import { CreateGenderDto } from './../dto/create-gender.dto';
@@ -20,8 +20,11 @@ export class GenderController {
 
     
     @Post()
+    @HttpCode(HttpStatus.CREATED)
     create(@Body() createGenderDto: CreateGenderDto){
      return this.genderService.create(createGenderDto);
+    
+     
      
     }
 

@@ -1,4 +1,4 @@
-import { Controller, Delete, Patch, Post, Get, Param, Body, Query } from '@nestjs/common';
+import { Controller, Delete, Patch, Post, Get, Param, Body, Query, HttpCode, HttpStatus } from '@nestjs/common';
 import { EditorialService } from '../services/editorial.service';
 import { PaginationQueryDto } from 'src/shared/common/dto/pagination-query.dto';
 import { CreateEditorialDto } from '../dto/create-editorial.dto';
@@ -20,6 +20,7 @@ export class EditorialController {
     }
 
     @Post()
+    @HttpCode(HttpStatus.CREATED)
     create(@Body()createEditorialDto: CreateEditorialDto){
      return this.editorialService.create(createEditorialDto);
     }

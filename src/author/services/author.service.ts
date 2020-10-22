@@ -1,14 +1,15 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Inject } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Author } from '../entities/author.entity';
+import { Author } from '../interface/author.interface';
 import { Model } from 'mongoose';
 import { PaginationQueryDto } from 'src/shared/common/dto/pagination-query.dto';
 import { CreateAuthorDto } from '../dto/create-author.dto';
 import { UpdateAuthorDto } from '../dto/update-author.dto';
+import { AUTHOR_MODEL } from 'src/shared/constants/constants';
 
 @Injectable()
 export class AuthorService {
-    constructor(@InjectModel(Author.name) private readonly authorModel: Model<Author>){
+    constructor(@Inject(AUTHOR_MODEL) private readonly authorModel: Model<Author>){
  
     }
 

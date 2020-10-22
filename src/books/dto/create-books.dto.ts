@@ -2,7 +2,7 @@ import { IsString, IsNotEmpty, IsDate} from 'class-validator';
 export class CreateBooksDto {
    @IsString()
    @IsNotEmpty()
-   readonly name: String;
+   readonly title: string;
 
     @IsDate()
    readonly publishDate: Date;

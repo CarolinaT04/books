@@ -1,15 +1,16 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Inject } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Editorial } from '../entities/editorial.entity';
+import { Editorial } from '../interface/editorial.interface';
 import { Model } from 'mongoose';
 import { PaginationQueryDto } from 'src/shared/common/dto/pagination-query.dto';
 import { CreateEditorialDto } from '../dto/create-editorial.dto';
 import { UpdateEditorialDto } from '../dto/update-editorial.dto';
+import { EDITORIAL_MODEL } from 'src/shared/constants/constants';
 
 
 @Injectable()
 export class EditorialService {
-    constructor(@InjectModel(Editorial.name) private readonly editorialModel: Model<Editorial>){}
+    constructor(@Inject(EDITORIAL_MODEL) private readonly editorialModel: Model<Editorial>){}
 
     findAll( paginationQuery: PaginationQueryDto){
         const { limit , offset} = paginationQuery;

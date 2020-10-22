@@ -1,49 +1,42 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, forwardRef, Inject, ValidationPipe } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Book } from '../entities/book.entity';
+import { Book } from '../interface/book.interface';
 import { Model } from 'mongoose';
 import { CreateBooksDto } from '../dto/create-books.dto';
 import { UpdateBooksDto } from '../dto/update-books.dtos';
 import { PaginationQueryDto } from '../../shared/common/dto/pagination-query.dto';
+import { BOOK_MODEL } from 'src/shared/constants/constants';
+import { GenderService } from 'src/gender/services/gender.service';
+import { AuthorService } from 'src/author/services/author.service';
+import { EditorialService } from 'src/editorial/services/editorial.service';
+import { BooksRepository } from '../repository/books.repository';
 
 @Injectable()
 export class BooksService {
     constructor(
-        @InjectModel(Book.name) private  readonly bookModel: Model<Book> ,){}
+       private  readonly bookRepository: BooksRepository ){}
 
-        findAll(paginationQuery: PaginationQueryDto){
-            const { limit , offset} = paginationQuery;
-            return this.bookModel
-            .find()
-            .skip(offset)
-            .limit(limit)
-            .exec();
+      async findAll(paginationQuery: PaginationQueryDto): Promise<Book[]>{
+            return await this.bookRepository.findAll(paginationQuery);
         }
 
       async findOne(id: string): Promise<Book>{
-          const book =  (await this.bookModel.findOne({_id: id}).exec());
+          const book =  await this.bookRepository.findOne(id);
           if (!book) throw new NotFoundException(`Book #${id} not found`);
             return book ;
         }
        
        async  create(createBook: CreateBooksDto): Promise<Book>{
-         const book = new this.bookModel(createBook);
-            return book.save();
+         await this.bookRepository.findGender(createBook.gender);
+        return await this.bookRepository.create(createBook);
         }
+
        
        async update(id:string, updateBooks: UpdateBooksDto): Promise<Book>{
-            const book = await this.bookModel
-            .findByIdAndUpdate({_id: id}, { $set: updateBooks}, {new: true} )
-            .exec();
-
-            if(!book) throw new NotFoundException(`Book ${id} not found`);
-            return book;
+            return await this.bookRepository.update(id ,updateBooks);
         }
 
-      async  delete(id:string): Promise<Book>{
-          const book = await this.findOne(id);
-
-        if(!book) throw new NotFoundException(`Book ${id} not found`);
-        return book.remove();
+      async  delete(id:string): Promise<void>{
+           await this.bookRepository.delete(id);
         }
 }

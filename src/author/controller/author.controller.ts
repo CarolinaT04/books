@@ -1,4 +1,4 @@
-import { Controller, Delete, Patch, Post, Get, Query, Param, Body } from '@nestjs/common';
+import { Controller, Delete, Patch, Post, Get, Query, Param, Body, HttpStatus, HttpCode } from '@nestjs/common';
 import { AuthorService } from '../services/author.service';
 import { PaginationQueryDto } from 'src/shared/common/dto/pagination-query.dto';
 import { CreateAuthorDto } from '../dto/create-author.dto';
@@ -19,6 +19,7 @@ export class AuthorController {
     }
 
     @Post()
+    @HttpCode(HttpStatus.CREATED)
     create(@Body()createAuthorDto: CreateAuthorDto){
      return this.authorService.create(createAuthorDto);
     }

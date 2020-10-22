@@ -1,8 +1,8 @@
 import { Prop, Schema ,SchemaFactory } from "@nestjs/mongoose";
 import { Document } from 'mongoose';
 
-@Schema()
 export class Book extends Document {
+    @Prop()
     title: string;
 
     @Prop()
@@ -21,5 +21,3 @@ export class Book extends Document {
     editorial: string;
 
 }
-
-export const BookSchema = SchemaFactory.createForClass(Book)

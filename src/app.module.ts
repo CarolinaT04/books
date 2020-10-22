@@ -4,12 +4,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { GenderModule } from './gender/gender.module';
 import { AuthorModule } from './author/author.module';
 import { EditorialModule } from './editorial/editorial.module';
+import { ConfigModule } from './config/config.module';
 
 @Module({
   imports: [BooksModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/books'),
     GenderModule,
     AuthorModule,
-    EditorialModule]
+    EditorialModule,
+    ConfigModule],
 })
 export class AppModule {}
