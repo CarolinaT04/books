@@ -25,12 +25,12 @@ export class EditorialController {
      return this.editorialService.create(createEditorialDto);
     }
 
-    @Patch()
+    @Patch(':id')
     update(@Param('id') id: string, @Body() updateEditorialDto: UpdateEditorialDto){
         return this.editorialService.update(id, updateEditorialDto);
     }
 
-    @Delete()
+    @Delete(':id')
     delete(@Param('id') id:string){
         return this.editorialService.delete(id);
     }

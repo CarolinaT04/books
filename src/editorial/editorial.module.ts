@@ -6,10 +6,12 @@ import { EditorialController } from './controller/editorial.controller';
 import { Editorial } from './interface/editorial.interface';
 import { ConfigModule } from 'src/config/config.module';
 import { editorialProvider } from './providers/editorial.provider';
+import { EditorialRepository } from './repository/editorial.repository';
 
 @Module({
   imports: [ConfigModule],
   controllers: [EditorialController],
-  providers: [...editorialProvider, EditorialService]
+  providers: [...editorialProvider, EditorialService, EditorialRepository],
+  exports:[ EditorialService, EditorialRepository]
 })
 export class EditorialModule {}

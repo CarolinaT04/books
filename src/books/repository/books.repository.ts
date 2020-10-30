@@ -7,6 +7,7 @@ import { UpdateBooksDto } from '../dto/update-books.dtos';
 import { PaginationQueryDto } from '../../shared/common/dto/pagination-query.dto';
 import { BOOK_MODEL } from 'src/shared/constants/constants';
 import { GenderService } from 'src/gender/services/gender.service';
+import { Gender } from 'src/gender/interface/gender.interface';
 
 @Injectable()
 export class BooksRepository {
@@ -33,7 +34,8 @@ export class BooksRepository {
           const book =  (await this.bookModel.findOne({_id: id}).exec());
             return book ;
           } catch(err){
-          throw  new Error(err);
+          console.log(err);
+          
           }
         }
        
@@ -61,31 +63,39 @@ export class BooksRepository {
             if(!book) throw new NotFoundException(`Book ${id} not found`);
             return book;
         }catch(err){
-            throw new Error(err);
+            console.log(err);
+            
         }
         }
 
-      async  delete(id:string): Promise<void>{
+      async  delete(id:string): Promise<Book>{
 
         try{
-          const book = await (await this.bookModel.deleteOne({_id: id})).deletedCount;
+          const book = (await this.bookModel.findByIdAndDelete(id));
 
-        if(book <= 0) throw new NotFoundException(`Book ${id} not found`);
-        }catch (err){
-          throw new Error(err);
+        if (!book) throw new NotFoundException('Book not found');
+           return book;
+              }catch (err){
+           throw new Error(err);
+          
         }
         }
 
 
-        // PRIVATE METHODS
-
-        async findGender(gender: string){
-
-          try{
-          const genders = await this.bookModel.findOne({gender});
-          return genders;
-          }catch(error){
-            throw new Error(error);
+        async findBookName(title: string): Promise<Book>{
+          try {
+             const book = await this.bookModel.findOne({
+                 title: {
+                     $regex: title,
+                     $options: 'i',
+                   },
+             });
+             return book;
+          } catch (error) {
+              console.log(error);
+              
           }
-        }
+          
+             
+     }
 }

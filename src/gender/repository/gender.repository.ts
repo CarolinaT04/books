@@ -11,7 +11,7 @@ import { GENDER_MODEL } from 'src/shared/constants/constants';
 export class GenderRepository {
     constructor(@Inject(GENDER_MODEL) private readonly genderModel: Model<Gender>){}
 
-    findAll(paginationQuery: PaginationQueryDto){
+   async findAll(paginationQuery: PaginationQueryDto): Promise<Gender[]>{
     try{
         const { limit , offset} = paginationQuery;
         return this.genderModel
@@ -29,7 +29,7 @@ export class GenderRepository {
         const gender = (await this.genderModel.findOne({_id: id}).exec());
         return gender;
     }catch(err){
-        throw new NotFoundException(err , `Gender #${id} not found`);
+       throw Error(err);
     }
 
     }

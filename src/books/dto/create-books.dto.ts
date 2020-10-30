@@ -8,7 +8,7 @@ export class CreateBooksDto {
    readonly publishDate: Date;
 
     @IsString()
-   readonly ISBN : string;
+   readonly isbn: string;
 
    @IsString()
    readonly gender: string;

@@ -20,15 +20,15 @@ export const BookSchema  = new mongoose.Schema(
      required: false
     },
     gender: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         required: true,
-        ref: GENDER_MODEL
+        ref: 'Gender'
     },
 
     author:{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         required: true,
-        ref: AUTHOR_MODEL
+        ref: 'Author'
     },
     editorial: {
         type: mongoose.Schema.Types.ObjectId,

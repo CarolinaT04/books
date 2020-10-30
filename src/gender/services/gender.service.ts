@@ -1,4 +1,4 @@
-import { Injectable} from '@nestjs/common';
+import { Injectable, NotFoundException} from '@nestjs/common';
 import { Gender } from '../interface/gender.interface';
 import { CreateGenderDto } from './../dto/create-gender.dto';
 import { UpdateGenderDto } from './../dto/update-gender.dto';
@@ -10,12 +10,14 @@ export class GenderService {
     constructor( 
         private readonly genderRepository: GenderRepository){}
 
-    findAll(paginationQuery: PaginationQueryDto){
+  async  findAll(paginationQuery: PaginationQueryDto): Promise<Gender[]>{
         return this.genderRepository.findAll(paginationQuery);
     }
 
    async findOne(id: string): Promise<Gender>{
-        return this.genderRepository.findOne(id);
+        const gender = await this.genderRepository.findOne(id);
+        if (!gender) throw new NotFoundException(`Gender with ID ${id} was not found`);
+        return gender 
 
     }
 

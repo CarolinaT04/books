@@ -24,13 +24,15 @@ export class AuthorController {
      return this.authorService.create(createAuthorDto);
     }
 
-    @Patch()
-    update(@Param() id: string, @Body()updateAuthorDto: UpdateAuthorDto){
+    @Patch(':id')
+    update(@Param('id') id: string, @Body()updateAuthorDto: UpdateAuthorDto){
         return this.authorService.update(id , updateAuthorDto);
     }
 
-    @Delete()
-    delete(@Param() id:string){
+    @Delete(':id')
+    delete(@Param('id') id:string){
         return this.authorService.delete(id);
     }
+
+
 }
