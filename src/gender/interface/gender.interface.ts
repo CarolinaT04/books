@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
 
-export class Gender extends Document {
-   readonly description: string;
+export interface Gender extends Document {
+    description: string;
 
 }

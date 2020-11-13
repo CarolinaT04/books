@@ -1,12 +1,8 @@
-import { Prop, Schema } from "@nestjs/mongoose";
 import { Document } from 'mongoose';
 
-@Schema()
-export class Author extends Document {
-    @Prop()
+export interface Author extends Document {
     name: string;
-
-    @Prop()
     lastName: string;
+    email: string;
 
 }

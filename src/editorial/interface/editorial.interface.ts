@@ -1,15 +1,10 @@
 import { Prop, Schema } from "@nestjs/mongoose";
 import { Document } from 'mongoose';
 
-export class Editorial extends Document {
-    
-    @Prop()   
+export interface Editorial extends Document {
+      
     name: string;
-
-    @Prop()
     address: string;
-
-    @Prop()
     email: string;
 
 }

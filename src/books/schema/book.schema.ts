@@ -20,25 +20,26 @@ export const BookSchema  = new mongoose.Schema(
      required: false
     },
     gender: {
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'Gender'
+        ref: GENDER_MODEL
     },
 
     author:{
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'Author'
+        ref: AUTHOR_MODEL
     },
     editorial: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: EDITORIAL_MODEL
+        ref: EDITORIAL_MODEL,
     }
 
-}
-);
+},
+{timestamps: true});
 
-BookSchema.index({ title: 1 }, { unique: false, dropDups: true });
+
+BookSchema.index({ title: 1 }, { unique: true, dropDups: true });
 
 

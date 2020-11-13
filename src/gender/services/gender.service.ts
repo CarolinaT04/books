@@ -22,6 +22,7 @@ export class GenderService {
     }
 
     async create (createGender: CreateGenderDto): Promise<Gender>{
+        await this.genderName(createGender.description);
        return this.genderRepository.create(createGender);
         
     }
@@ -33,5 +34,18 @@ export class GenderService {
 
     async delete(id: string): Promise<void>{
         this.genderRepository.delete(id);
+    }
+// PRIVATE METHOD
+
+    //IF GENDER NAME EXISTS
+    private async genderName(description: string): Promise<Gender> {
+        try {
+            const gender =  await this.genderRepository.findGenderName(description);
+            if(gender) throw new NotFoundException(`The gender ${description} already exists`);
+            return gender;
+        } catch (error) {
+          throw new NotFoundException(error);
+        }
+     
     }
 }

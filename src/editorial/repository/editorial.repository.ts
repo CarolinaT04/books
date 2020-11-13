@@ -29,8 +29,6 @@ export class EditorialRepository {
     async findOne ( id : string): Promise<Editorial>{
         try {
         const editorial = (await this.editorialModel.findOne({_id: id}).exec());
-
-        if(!editorial) throw new NotFoundException(`Editorial ${id} not found`);
         return editorial;
         } catch (error) {
             console.log(error);

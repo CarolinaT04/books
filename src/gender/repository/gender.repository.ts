@@ -4,8 +4,8 @@ import { Model } from 'mongoose';
 import { CreateGenderDto } from './../dto/create-gender.dto';
 import { UpdateGenderDto } from './../dto/update-gender.dto';
 import { PaginationQueryDto } from 'src/shared/common/dto/pagination-query.dto';
-import { InjectModel } from '@nestjs/mongoose';
 import { GENDER_MODEL } from 'src/shared/constants/constants';
+import { noop } from 'rxjs';
 
 @Injectable()
 export class GenderRepository {
@@ -71,4 +71,22 @@ export class GenderRepository {
     }
     }
 
+    //PRIVATE METHOD 
+
+    async findGenderName(description: string): Promise<Gender>{
+        try {
+           const gender = await this.genderModel.findOne({
+               description: {
+                   $regex: description,
+                   $options: 'i',
+                 },
+           });
+           return gender;
+    
+        } catch (error) {
+           throw new NotFoundException(error);
+            
+        }
+        
+    }
 }

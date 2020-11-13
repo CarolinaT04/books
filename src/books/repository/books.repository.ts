@@ -6,15 +6,12 @@ import { CreateBooksDto } from '../dto/create-books.dto';
 import { UpdateBooksDto } from '../dto/update-books.dtos';
 import { PaginationQueryDto } from '../../shared/common/dto/pagination-query.dto';
 import { BOOK_MODEL } from 'src/shared/constants/constants';
-import { GenderService } from 'src/gender/services/gender.service';
-import { Gender } from 'src/gender/interface/gender.interface';
+
 
 @Injectable()
 export class BooksRepository {
     constructor(
-        @Inject(BOOK_MODEL) private  readonly bookModel: Model<Book> ,
-        @Inject(forwardRef(() => GenderService))
-        private  readonly genderService: GenderService,){}
+        @Inject(BOOK_MODEL) private  readonly bookModel: Model<Book> ,){}
 
       async findAll(paginationQuery: PaginationQueryDto): Promise<Book[]>{
         try {

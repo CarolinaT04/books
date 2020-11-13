@@ -40,7 +40,7 @@ export class AuthorRepository {
       if (!result){ throw new Error('404 Author was not created');}
       return result;
     } catch (error) {
-        console.log(error); 
+       throw new NotFoundException(error);
     } 
     }
     
@@ -68,17 +68,21 @@ export class AuthorRepository {
      
 
  }
- async findAuthorName(name: string): Promise<Author>{
+ async findAuthorName(name: string, lastName): Promise<Author>{
      try {
         const author = await this.authorModel.findOne({
             name: {
                 $regex: name,
                 $options: 'i',
               },
+              lastName:{
+                $regex: lastName,
+                $options: 'i',
+              }
         });
         return author;
      } catch (error) {
-         console.log(error);
+        throw new Error(error);
          
      }
      

@@ -22,7 +22,7 @@ export class AuthorService {
     }
 
    async create(createAuthorDto: CreateAuthorDto): Promise<Author>{
-      await this.validateName(createAuthorDto.name);
+     await this.validateName(createAuthorDto.name , createAuthorDto.lastName);
       return await this.authorRepository.create(createAuthorDto);
     
     }
@@ -38,10 +38,10 @@ export class AuthorService {
 
  // Private method
 
- private async validateName(name: string): Promise<void>{
-   const author = await this.authorRepository.findAuthorName(name);
+ private async validateName(name: string, lastName:string): Promise<void>{
+   const author = await this.authorRepository.findAuthorName(name, lastName);
    if(author){
-    const error = `There is already a Author with the name ${name}.`;
+    const error = `There is already a Author with the name ${name}+${lastName}.`;
     throw new NotFoundException(error);
    }
 

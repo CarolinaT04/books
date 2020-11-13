@@ -1,6 +1,6 @@
-import { IsString, IsNotEmpty } from "class-validator";
+import { IsString, IsNotEmpty, IsEmail } from "class-validator";
 
-export class CreateAuthorDto {
+export declare class CreateAuthorDto {
     @IsString()
     @IsNotEmpty()
     readonly name: string;
@@ -8,4 +8,8 @@ export class CreateAuthorDto {
     @IsString()
     @IsNotEmpty()
     readonly lastName: string;
+
+    @IsEmail()
+    @IsNotEmpty()
+    readonly email: string;
 }
