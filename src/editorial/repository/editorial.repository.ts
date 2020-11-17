@@ -31,7 +31,7 @@ export class EditorialRepository {
         const editorial = (await this.editorialModel.findOne({_id: id}).exec());
         return editorial;
         } catch (error) {
-            console.log(error);
+            throw new NotFoundException(error);
             
         }
         
@@ -43,10 +43,10 @@ export class EditorialRepository {
       try {
         const editorial = new this.editorialModel(createEditorialDto);
         const result = editorial.save();
-        if(!result) {throw new Error('Editorial was not created');}
+        if(!result) {throw new NotFoundException('Editorial was not created');}
         return result;
       } catch (error) {
-          console.log(error);
+          throw new NotFoundException(error);
           
       }
        
@@ -57,8 +57,6 @@ export class EditorialRepository {
         const editorial = await this.editorialModel
         .findByIdAndUpdate({_id: id}, { $set: updateEditorialDto}, {new: true})
         .exec();
-
-        if(!editorial) throw new NotFoundException(`Editorial ${id} not found`);
         return editorial;
     } catch (error) {
         console.log(error);
@@ -67,15 +65,34 @@ export class EditorialRepository {
     
     }
 
-    async delete( id: string): Promise<void> {
+    async delete( id: string): Promise<Editorial> {
         try {
-            const editorial = (await this.editorialModel.deleteOne({_id: id})).deletedCount;;
-            if(editorial<=0) throw new NotFoundException(`Editorial ${id} not found`);
+            const editorial = (await this.editorialModel.findByIdAndDelete({_id: id}));
+            return editorial;
         } catch (error) {
             console.log(error);
             
         }
        
+        
+    }
+
+    //PRIVATE METHOD 
+
+    async findEditorialName(name: string): Promise<Editorial>{
+        try {
+           const editorial = await this.editorialModel.findOne({
+               name: {
+                   $regex: name,
+                   $options: 'i',
+                 },
+           });
+           return editorial;
+    
+        } catch (error) {
+           throw new NotFoundException(error);
+            
+        }
         
     }
     

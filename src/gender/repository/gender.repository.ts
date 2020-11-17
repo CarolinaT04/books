@@ -52,8 +52,6 @@ export class GenderRepository {
             .findByIdAndUpdate({_id: id}, {$set: updateGender}, {new : true})
             .exec();
 
-            if(!gender) throw new NotFoundException(`Gender ${id} not found`);
-
             return gender;
     }catch(err){
         throw new Error(err);
@@ -61,11 +59,11 @@ export class GenderRepository {
 
     }
 
-    async delete(id: string): Promise<void>{
+    async delete(id: string): Promise<Gender>{
 
     try{
-        const gender =  (await this.genderModel.deleteOne({_id: id})).deletedCount;
-        if(gender <= 0 ) throw new NotFoundException(`Gender ${id} not found`);
+        const gender =  (await this.genderModel.findByIdAndDelete({_id: id}));
+        return gender;
     }catch(err){
         throw new Error(err);
     }

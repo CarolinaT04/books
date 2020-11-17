@@ -15,7 +15,7 @@ export class AuthorService {
      return await this.authorRepository.findAll(paginationQueryDto);
     }
 
-   async findOne( id: string): Promise<Author>{
+   async findOne( id: string  ): Promise<Author>{
         const author =  await this.authorRepository.findOne(id);
         if(!author) throw new NotFoundException(`Author with ${id} provided not found`);
         return author;
@@ -32,8 +32,11 @@ export class AuthorService {
       if(!author) throw new NotFoundException(`Author ${id} not found`);
       return author;
     }
- async delete(id: string): Promise<void>{
-     return await this.authorRepository.delete(id);
+
+ async delete(id: string): Promise<Author>{
+    const author = await this.authorRepository.delete(id);
+    if (!author) throw new NotFoundException(`Author with ${id} not found`);
+    return author;
  }
 
  // Private method

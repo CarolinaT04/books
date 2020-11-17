@@ -46,11 +46,16 @@ export class BooksService {
        async update(id:string, updateBooks: UpdateBooksDto): Promise<Book>{
             await this.validateTitleBook(updateBooks.title);
             this.validateUpdateItems(updateBooks);
-            return await this.bookRepository.update(id ,updateBooks);
+
+            const book = await this.bookRepository.update(id ,updateBooks);
+            if(!book) throw new NotFoundException(`Book ${id} not found`);
+            return book;
         }
 
       async  delete(id:string): Promise<Book>{
-         return  await this.bookRepository.delete(id);
+         const book =  await this.bookRepository.delete(id);
+         if (!book) throw new NotFoundException('Book not found');
+         return book;
         }
         
       //PRIVATE METHODS

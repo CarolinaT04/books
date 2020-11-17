@@ -23,15 +23,28 @@ export class EditorialService {
     }
 
   async  create(createEditorialDto : CreateEditorialDto): Promise<Editorial>{
+      await this.findName(createEditorialDto.name);
         return await this.editorialRepository.create(createEditorialDto);
     }
 
    async update( id: string , updateEditorialDto: UpdateEditorialDto): Promise<Editorial>{
-        return await this.editorialRepository.update(id, updateEditorialDto);
+        await this.findName(updateEditorialDto.name);
+        const editorial = await this.editorialRepository.update(id, updateEditorialDto);
+        if(!editorial) throw new NotFoundException(`Editorial ${id} not found`);
+        return editorial;
     }
 
-    async delete( id: string): Promise<void> {
-       await this.editorialRepository.delete(id);
+    async delete( id: string): Promise<Editorial> {
+       const editorial = await this.editorialRepository.delete(id);
+       if(!editorial) throw new NotFoundException(`Editorial ${id} not found`);
+       return editorial;
     }
     
+    //Private Methods
+
+    async findName(name: string): Promise<Editorial>{
+       const editorial = this.editorialRepository.findEditorialName(name);
+       if (editorial) throw new NotFoundException(`The editorial ${name} already exists`);
+       return editorial;
+    }
 }

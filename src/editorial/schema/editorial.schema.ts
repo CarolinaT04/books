@@ -26,4 +26,4 @@ export const EditorialSchema = new mongoose.Schema (
 {timestamps:true}
 );
 
-EditorialSchema.index({ name: 1 }, { unique: false,  });
+EditorialSchema.index({ name: 1 }, { unique: false, dropDups: true });

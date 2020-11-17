@@ -11,7 +11,7 @@ export class GenderService {
         private readonly genderRepository: GenderRepository){}
 
   async  findAll(paginationQuery: PaginationQueryDto): Promise<Gender[]>{
-        return this.genderRepository.findAll(paginationQuery);
+        return await this.genderRepository.findAll(paginationQuery);
     }
 
    async findOne(id: string): Promise<Gender>{
@@ -23,17 +23,22 @@ export class GenderService {
 
     async create (createGender: CreateGenderDto): Promise<Gender>{
         await this.genderName(createGender.description);
-       return this.genderRepository.create(createGender);
+       return await this.genderRepository.create(createGender);
         
     }
 
     async update(id: string, updateGender: UpdateGenderDto): Promise<Gender>{
-        return this.genderRepository.update(id , updateGender);
+        await this.genderName(updateGender.description);
+        const gender =  await this.genderRepository.update(id , updateGender);
+        if(!gender) throw new NotFoundException(`Gender ${id} not found`);
+        return gender;
 
     }
 
-    async delete(id: string): Promise<void>{
-        this.genderRepository.delete(id);
+    async delete(id: string): Promise<Gender>{
+      const gender =  await this.genderRepository.delete(id);
+      if (!gender) throw new NotFoundException(`The gender with the ID ${id} provided not found`);
+      return gender;
     }
 // PRIVATE METHOD
 

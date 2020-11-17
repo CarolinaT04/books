@@ -56,8 +56,6 @@ export class BooksRepository {
         const book = await this.bookModel
             .findByIdAndUpdate({_id: id}, { $set: updateBooks}, {new: true} )
             .exec();
-
-            if(!book) throw new NotFoundException(`Book ${id} not found`);
             return book;
         }catch(err){
             console.log(err);
@@ -68,9 +66,7 @@ export class BooksRepository {
       async  delete(id:string): Promise<Book>{
 
         try{
-          const book = (await this.bookModel.findByIdAndDelete(id));
-
-        if (!book) throw new NotFoundException('Book not found');
+          const book = (await this.bookModel.findByIdAndDelete({_id: id}));
            return book;
               }catch (err){
            throw new Error(err);

@@ -7,7 +7,7 @@ import { EditorialSchema } from "../schema/editorial.schema";
 export const editorialProvider = [
     {
         provide: EDITORIAL_MODEL,
-        useFactory: ( connection: Connection)=> connection.model('Edtorial', EditorialSchema),
+        useFactory: ( connection: Connection)=> connection.model('Editorial', EditorialSchema),
         inject: [DATABASE_CONNECTION],
     }
 ];

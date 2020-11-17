@@ -6,6 +6,7 @@ import { CreateAuthorDto } from '../dto/create-author.dto';
 import { UpdateAuthorDto } from '../dto/update-author.dto';
 import { AUTHOR_MODEL } from 'src/shared/constants/constants';
 
+
 @Injectable()
 export class AuthorRepository {
     constructor(@Inject(AUTHOR_MODEL) private readonly authorModel: Model<Author>){
@@ -22,12 +23,12 @@ export class AuthorRepository {
         .exec();
     }
 
-   async findOne( id: string): Promise<Author>{
+   async findOne( id: string ): Promise<Author>{
        try {
-        const author = (await this.authorModel.findOne({_id: id}).exec());
+        const author = (await this.authorModel.findById({ _id: id }));
         return author;
        } catch (error) {
-           console.log(error);
+           throw new NotFoundException(error);
            
        }
         
@@ -55,11 +56,10 @@ export class AuthorRepository {
     }  
     
     }
- async delete(id: string): Promise<void>{
+ async delete(id: string): Promise<Author>{
     try {
-        const author = (await this.authorModel.deleteOne({_id: id})).deletedCount;
-
-        if(author<= 0) throw new NotFoundException(`Author ${id} not found`);
+        const author = (await this.authorModel.findByIdAndDelete({_id: id}));
+        return author;
       
     } catch (error) {
         throw new Error(error);
